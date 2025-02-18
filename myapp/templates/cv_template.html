@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h1>{{ name }}</h1>
+    <p>{{ email }} || {{ phone }} || <a href="{{ linkedin }}">LinkedIn</a> || <a href="{{ github }}">GitHub</a></p>
+    
+    <h2>Education</h2>
+    <h3>{{ education.nyu.degree }}, {{ education.nyu.university }}</h3>
+    <p>Expected: {{ education.nyu.graduation }}</p>
+    <p>Relevant Coursework: {{ education.nyu.coursework }}</p>
+    
+    <h3>{{ education.umass.degree }}, {{ education.umass.university }}</h3>
+    <p>{{ education.umass.graduation }} | GPA: {{ education.umass.gpa }}</p>
+    <p>Distinctions: {{ education.umass.distinctions }}</p>
+    <p>Relevant Coursework: {{ education.umass.coursework }}</p>
+    
+    <h2>Experience</h2>
+    {% for job in experience %}
+        <h3>{{ job.title }}, {{ job.company }}; {{ job.location }}</h3>
+        <p>{{ job.start_date }} – {{ job.end_date }}</p>
+        <ul>
+            {% for point in job.responsibilities %}
+                <li>{{ point }}</li>
+            {% endfor %}
+        </ul>
+    {% endfor %}
+    
+    <h2>Academic Projects</h2>
+    {% for project in projects %}
+        <h3>{{ project.name }} {{ project.year }}</h3>
+        <ul>
+            {% for detail in project.details %}
+                <li>{{ detail }}</li>
+            {% endfor %}
+        </ul>
+    {% endfor %}
+    
+    <h2>Technical Skills</h2>
+    <p><strong>Programming Languages & Frameworks:</strong> {{ skills.languages }}</p>
+    <p><strong>Tools:</strong> {{ skills.tools }}</p>
+</div>
+{% endblock %}
